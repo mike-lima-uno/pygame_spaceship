@@ -1,12 +1,44 @@
 # Pygame Spaceship
 
-This is an experimental application for reviweing and remember the basics
+<!-- open the .md file and press Shift+Ctrl+P; type > generate toc -->
+<!-- vscode-markdown-toc -->
+* [Intro](#Intro)
+	* [Introduction for the initial version](#Introductionfortheinitialversion)
+	* [State-of-the-Art](#State-of-the-Art)
+* [Installation](#Installation)
+	* [Virtual Environment](#VirtualEnvironment)
+	* [Dependencies](#Dependencies)
+	* [Executables](#Executables)
+	* [Icons and Assets](#IconsandAssets)
+* [Run the App](#RuntheApp)
+* [First appearance](#Firstappearance)
+* [IMPROVEMENTS](#IMPROVEMENTS)
+	* [Game Experience](#GameExperience)
+	* [Dynamic Functions](#DynamicFunctions)
+	* [Design](#Design)
+	* [Interaction](#Interaction)
+* [Something about Git and Github](#SomethingaboutGitandGithub)
+	* [1. initializing a local and remote repo](#initializingalocalandremoterepo)
+	* [2. preparing it localy](#preparingitlocaly)
+	* [3. how to develop](#howtodevelop)
+* [About the Author](#AbouttheAuthor)
+
+<!-- vscode-markdown-toc-config
+	numbering=false
+	autoSave=false
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
+
+This is an experimental application for reviewing and remember the basics
 of Pygame. The objective is to move a spaceship in two dimensions while 
 avoiding collisions with the walls of the window.
 
-## Intro 
+## <a name='Intro'></a>Intro 
 
-### Introduction for the initial version
+This app is developed originally with Win11, Python 3.13.3. Pygame 2.6.1
+
+### <a name='Introductionfortheinitialversion'></a>Introduction for the initial version
 
 The ship can be controlled using six actions:
 
@@ -17,24 +49,25 @@ The ship can be controlled using six actions:
 Negative velocity and backward movement are not implemented in this first
 version.
 
-### State-of-the-Art
+### <a name='State-of-the-Art'></a>State-of-the-Art
 
 We encourage you to explore the previous playable versions to see how the
 project has evolved.
 
 Let's see what I can build.
 
-## Installation
+## <a name='Installation'></a>Installation
+
+### <a name='VirtualEnvironment'></a>Virtual Environment
 
 Create and activate a virtual environment:
-
-```console
+```ps
 python -m venv .venv
 ```
 
 On WIndows:
-```
-> .\.venv\Scripts\activate
+```ps
+.\.venv\Scripts\activate
 ```
 
 On Mac or Linux:
@@ -42,32 +75,56 @@ On Mac or Linux:
 source .venv/bin/activate
 ```
 
-install the dependencies:
+### <a name='Dependencies'></a>Dependencies
 
-```
-> python -m pip install pygame
-> python -m pip freeze > requirements.txt
+install the dependencies. Always when installing new dependencies, freeze it to requirements.txt:
+```ps
+python -m pip install pygame
+python -m pip install pyinstaller
+python -m pip freeze > requirements.txt
 ```
 
 if you already have a requirements.txt, use this to install de dependencies:
+```ps
+python -m pip install -r requirements.txt
+```
+
+### <a name='Executables'></a>Executables
+
+Pyinstaller is a library that allows you to create a windows executable file from python code. Ensure access to all configuration files and assets, so that different versions can run.
+
+To create an executable version. For me, I needed to run it as a python module. Be Careful: PyInstaller is CamelCased. Under the simpliest command and some options I use:
+```ps
+python -m PyInstaller run.py
+python -m PyInstaller --onefile --windowed --icon=<app.ico> --name <name> run.py 
+```
+
+### <a name='IconsandAssets'></a>Icons and Assets
+
+Required attribuition for the source.
+
+Iconic Panda from Flaticon for spaceship.png 32x32px
+```html
+<a href="https://www.flaticon.com/free-icons/spaceship" title="spaceship icons">Spaceship icons created by Iconic Panda - Flaticon</a>
+```
+
+## <a name='RuntheApp'></a>Run the App
+
+The file run.py simply repeats the main.py but it must stay on the project root to simplify the creation of executables.
 
 ```
-> python -m pip install -r requirements.txt
+python run.py
 ```
 
-## Run the App
 
-```> python run.py```
-
-
-## First appearance
+## <a name='Firstappearance'></a>First appearance
 
 The first appearance of the ship also represents my first practical
 experience with Pygame in a long time.
 
 ![Spaceship first appearance](./images/spaceship_v0.jpg)
 
-## TODOS
+## <a name='IMPROVEMENTS'></a>IMPROVEMENTS
 
 Collaboration is welcome. Pull requests are encouraged.
 
@@ -79,12 +136,12 @@ Use the following branch workflow:
 Feel free to implement the following topics in the way you consider most
 appropriate.
 
-### Game Experience
+### <a name='GameExperience'></a>Game Experience
 
     [ ] Create a start screen with instructions and a start button.
     [ ] Remove the instructions from the game screen.
 
-### Dynamic Functions
+### <a name='DynamicFunctions'></a>Dynamic Functions
 
     [ ] Allow the ship to leave one side of the window and appear on the opposite side.
     [ ] Detect collisions with the window limit and trigger a game-over state.
@@ -102,7 +159,7 @@ appropriate.
 
     [ ] Improve the inertia system by allowing backward movement up to a defined speed limit.
 
-### Design
+### <a name='Design'></a>Design
 
     [ ] Replace the triangle with a spaceship icon. See: https://www.flaticon.com/free-icons/spaceship
     [ ] Create a starry background using Pygame.
@@ -110,7 +167,7 @@ appropriate.
     [ ] Make the celestial bodies move slowly.
     [ ] Add comets and stars that move faster across the background.
 
-### Interaction
+### <a name='Interaction'></a>Interaction
 
     [ ] Add shooting functionality:
         [ ] Replace the current Space key function with normal firing.
@@ -124,8 +181,118 @@ appropriate.
 
     [ ] Add an explosion animation when the ship is destroyed.
 
+---
 
-## About the Author
+## <a name='SomethingaboutGitandGithub'></a>Something about Git and Github
+
+My way: how do I do it for myself
+
+### <a name='initializingalocalandremoterepo'></a>1. initializing a local and remote repo
+
+* Independently from each other:
+  * create a local folder (on pc) and 
+  * remote repository (on github). Normally I set: is Public, has README, has gitignore (for Python), License MIT.
+
+### <a name='preparingitlocaly'></a>2. preparing it localy
+
+1. Here you need to create your folder structure, and the first state to commit. It becomes normaly a runnable and free of errors version but nothing so special is needed.
+2. Then do the basics: git init; define user and email; set branch as main; add and check remote; add .; commit -m "initial"
+3. after your first local commit, you can pull origin and edit the .gitignore
+
+**Commands to Nr 2**: 
+
+some basic commands, for reference if necessary:
+```console
+git init
+git config [None|--global|--local] user.name <your git name>
+git config [None|--global|--local] user.email <your git email>
+git branch -M main
+git remote add origin <your_github_url_if_working_with_https>
+git remote -v
+git add .
+git commit -m "initial"
+```
+
+HINTS:  
+define branch main as default for git configuration
+```console
+git config --global init.defaultBranch main
+```
+
+ALTERNATIVELY:  
+rename master (lower -m):
+```
+git branch -m master main
+```
+
+delete the master branch from server, if necessary
+```
+git push origin --delete master
+```
+
+**Commands and Hints to Nr. 3**:
+
+to pull, allow unrelated histories and resolve conflicts
+```console
+git pull origin main --allow-unrelated-histories
+```
+
+at .gitignore I use currently the following standard:
+* .gitignore Python from Github
+* include the .git folder
+* comment dist/ to allow push of executables from pyinstaller
+* uncomment .vscode/ to avoid this commit and push
+
+Then add, commit and push. The game begins here!
+
+### <a name='howtodevelop'></a>3. how to develop
+
+Up to now I normally work on small private projects, then I siply commit everything on the main, but from now I want to become more professional and separate the branchs, starting with two: main and dev.
+
+The workflow:
+
+1. Ensure you are on main and main is uo-to-date. main must be my entry point. Then change to dev and create a new dev localy. after that push it to the server. The server must know, you have a new branch dev.  
+The -c option on ```git switch -c dev``` creates the branch and switches to it.
+2. working on his new dev (LOOP IT), up to a runnable, good for merge version be reached. more commits here are possible / wanted.
+3. switch to main, ensure main is localy up-to-date, merge dev to main (you must to be there, on main), and push it to server. the lines come together!
+4. repeat, this time without ```-c``` and without ```push origin dev```, and go back to Nr 2.
+
+I'll follow the steps under:
+```ps
+# 1. Create dev the first time
+git switch main
+git pull origin main
+git switch -c dev
+git push -u origin dev
+
+# 2. Develop (LOOP IT)
+git add .
+git commit -m "Describe the change"
+git push origin dev
+
+# 3. Merge finished work into main
+git switch main
+git pull origin main
+git merge dev
+git push origin main
+
+# 4. Start the next development cycle and go back to Nr. 2
+git switch dev
+```
+
+Alternatively:
+```ps
+# change branch to dev
+git checkout dev
+
+# chance branch to main
+git branch main
+```
+
+
+
+
+## <a name='AbouttheAuthor'></a>About the Author
 
 Cicero Lima is a M.Sc. in Mechanical Engineering, PCAP-certified Python developer,
 and father of three children. He has eight years of professional

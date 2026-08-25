@@ -5,6 +5,7 @@ from .ship import Ship
 
 
 class Game:
+    
     def __init__(self):
         pygame.init()
 
