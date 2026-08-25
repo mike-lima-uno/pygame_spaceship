@@ -99,6 +99,8 @@ python -m PyInstaller run.py
 python -m PyInstaller --onefile --windowed --icon=<app.ico> --name <name> run.py 
 ```
 
+HINT: An .exe file usually won't be added to git.
+
 ### <a name='IconsandAssets'></a>Icons and Assets
 
 Required attribuition for the source.
@@ -145,6 +147,7 @@ appropriate.
 
     [ ] Allow the ship to leave one side of the window and appear on the opposite side.
     [ ] Detect collisions with the window limit and trigger a game-over state.
+        [ ] create some obstacles, so that the ship can navigate around .. or colide.
     [ ] Let the player choose between wrap-around and collision mode before the game starts.
 
     [ ] Implement holding the Space key for continuous acceleration.

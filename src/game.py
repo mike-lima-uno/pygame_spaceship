@@ -33,10 +33,15 @@ class Game:
             elif event.type == pygame.KEYDOWN:
                 self.handle_key_down(event.key)
 
+        keys = pygame.key.get_pressed()
+        if keys:
+            self.handle_key_pressed(keys)
+
     def handle_key_down(self, key):
         if key == pygame.K_ESCAPE:
             self.running = False
 
+        # - - - arrows - - - 
         elif key == pygame.K_UP:
             self.ship.set_direction(settings.UP)
 
@@ -49,11 +54,28 @@ class Game:
         elif key == pygame.K_RIGHT:
             self.ship.set_direction(settings.RIGHT)
 
+        # - - - command buttons - - -
         elif key == pygame.K_SPACE:
             self.ship.accelerate()
 
         elif key == pygame.K_b:
             self.ship.brake()
+
+        # - - - idle - - -
+        # else:
+        #     pass
+    
+    def handle_key_pressed(self, keys):
+        if keys[pygame.K_SPACE]:
+            self.ship.accelerate(0.1)
+
+        elif keys[pygame.K_b]:
+            self.ship.brake(0.1)
+
+        # - - - idle - - -
+        # else:
+        #     pass
+
 
     def update(self):
         self.ship.update()
@@ -77,27 +99,28 @@ class Game:
         self.ship.draw(self.screen)
 
         speed_text = self.font.render(
-            f"Speed: {self.ship.speed:.2f} / {settings.MAX_SPEED:.2f}",
+            f"Speed: {self.ship.speed:.2f}",
             True,
             settings.TEXT_COLOR,
         )
 
         controls_text = self.font.render(
-            "Arrows: direction   Space: accelerate   "
-            "B: brake   Esc: quit",
+            "Arrows: direction   Space: accelerate   B: brake   "
+            f"Max. Speed: {settings.MAX_SPEED:.0f}   Esc: quit",
             True,
             settings.TEXT_COLOR,
         )
 
-        self.screen.blit(speed_text, (15, 15))
+        self.screen.blit(speed_text, (settings.MARGIN, settings.MARGIN))
         self.screen.blit(
             controls_text,
-            (15, settings.HEIGHT - 35),
+            (settings.MARGIN, settings.HEIGHT - 2 * settings.MARGIN),
         )
 
         pygame.display.flip()
 
     def run(self):
+        """while self.running: play, else: quit"""
         while self.running:
             self.handle_events()
             self.update()
