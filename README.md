@@ -141,11 +141,14 @@ appropriate.
 ### <a name='GameExperience'></a>Game Experience
 
     2026-08-25: at work. implemented game state and changing Game.draw()
-    [O] Create a start screen with instructions and a start button.
-    [O] Remove the instructions from the game screen.
+    2026-08-27: done. implementation prepared for paused and gameover
+    [X] Create a start screen with instructions and a start button.
+        start btn replaced by "press enter"
+        [ ] Optionally: one can additionally create a start btn
+    [X] Remove the instructions from the game screen.
 
-    [O] then create a screen for the state paused
-    [O] and a screen for the state game over
+    [O] then create a screen for the state STATE_PAUSED
+    [O] and a screen for the state GAME OVER
 
     [ ] in the future, separate fixed app settings (remaining on settings.py)
         from user defined configuration (moved to a new file config.toml)
@@ -161,7 +164,8 @@ appropriate.
     [X] Implement holding the Space key for continuous acceleration.
     [X] Implement holding the B key for continuous braking.
 
-    [ ] Change the behavior of the left and right arrows to rotate the ship by a defined number of degrees, allowing curved movement.
+    [ ] Change the behavior of the left and right arrows to rotate the ship by 
+        a defined number of degrees, allowing curved movement.
 
     [ ] Implement inertia:
         [ ] Use the Up arrow to accelerate.

@@ -9,6 +9,7 @@ class Ship:
         self.position = pygame.Vector2(x, y)
         self.direction = settings.UP.copy()
         self.speed = settings.INITIAL_SPEED
+        self.is_dead = False
 
     def set_direction(self, direction):
         """Change direction immediately, without inertia."""
