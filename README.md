@@ -19,7 +19,7 @@
 	* [Interaction](#Interaction)
 * [Something about Git and Github](#SomethingaboutGitandGithub)
 	* [1. initializing a local and remote repo](#initializingalocalandremoterepo)
-	* [2. preparing it localy](#preparingitlocaly)
+	* [2. preparing it locally](#preparingitlocally)
 	* [3. how to develop](#howtodevelop)
 * [About the Author](#AbouttheAuthor)
 
@@ -193,7 +193,7 @@ My way: how do I do it for myself
   * create a local folder (on pc) and 
   * remote repository (on github). Normally I set: is Public, has README, has gitignore (for Python), License MIT.
 
-### <a name='preparingitlocaly'></a>2. preparing it localy
+### <a name='preparingitlocally'></a>2. preparing it locally
 
 1. Here you need to create your folder structure, and the first state to commit. It becomes normaly a runnable and free of errors version but nothing so special is needed.
 2. Then do the basics: git init; define user and email; set branch as main; add and check remote; add .; commit -m "initial"
@@ -239,22 +239,24 @@ git pull origin main --allow-unrelated-histories
 
 at .gitignore I use currently the following standard:
 * .gitignore Python from Github
-* include the .git folder
 * comment dist/ to allow push of executables from pyinstaller
 * uncomment .vscode/ to avoid this commit and push
+
+ * * * HINT * * *:  
+The folder .git will be ignored by default and shouldn't be included 
 
 Then add, commit and push. The game begins here!
 
 ### <a name='howtodevelop'></a>3. how to develop
 
-Up to now I normally work on small private projects, then I siply commit everything on the main, but from now I want to become more professional and separate the branchs, starting with two: main and dev.
+Up to now I normally work on small private projects, then I siply commit everything on the main, but from now I want to become more professional and separate the branches, starting with two: main and dev.
 
 The workflow:
 
-1. Ensure you are on main and main is uo-to-date. main must be my entry point. Then change to dev and create a new dev localy. after that push it to the server. The server must know, you have a new branch dev.  
+1. Ensure you are on main and main is up-to-date. main must be my entry point. Then change to dev and create a new dev locally. after that push it to the server. The server must know, you have a new branch dev.  
 The -c option on ```git switch -c dev``` creates the branch and switches to it.
-2. working on his new dev (LOOP IT), up to a runnable, good for merge version be reached. more commits here are possible / wanted.
-3. switch to main, ensure main is localy up-to-date, merge dev to main (you must to be there, on main), and push it to server. the lines come together!
+2. working on this new dev (LOOP IT), up to a runnable, good for merge version be reached. more commits here are possible / wanted.
+3. switch to main, ensure main is locally up-to-date, merge dev to main (you must to be there, on main), and push it to server. the lines come together!
 4. repeat, this time without ```-c``` and without ```push origin dev```, and go back to Nr 2.
 
 I'll follow the steps under:
@@ -270,10 +272,10 @@ git add .
 git commit -m "Describe the change"
 git push origin dev
 
-# 3. Merge finished work into main
+# 3. Merge finished work into main / change the message if necessary
 git switch main
 git pull origin main
-git merge dev
+git merge dev --no-ff -m "merge dev into main"
 git push origin main
 
 # 4. Start the next development cycle and go back to Nr. 2
@@ -286,11 +288,18 @@ Alternatively:
 git checkout dev
 
 # chance branch to main
-git branch main
+git checkout main
 ```
 
+check on which branch you currently are
+```
+git branch
+# should return branch names. the asterisc shows where you are
+#   dev
+# * main
+```
 
-
+---
 
 ## <a name='AbouttheAuthor'></a>About the Author
 
