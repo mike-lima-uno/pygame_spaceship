@@ -99,6 +99,8 @@ python -m PyInstaller run.py
 python -m PyInstaller --onefile --windowed --icon=<app.ico> --name <name> run.py 
 ```
 
+HINT: An .exe file usually won't be added to git.
+
 ### <a name='IconsandAssets'></a>Icons and Assets
 
 Required attribuition for the source.
@@ -138,19 +140,32 @@ appropriate.
 
 ### <a name='GameExperience'></a>Game Experience
 
-    [ ] Create a start screen with instructions and a start button.
-    [ ] Remove the instructions from the game screen.
+    2026-08-25: at work. implemented game state and changing Game.draw()
+    2026-08-27: done. implementation prepared for paused and gameover
+    [X] Create a start screen with instructions and a start button.
+        start btn replaced by "press enter"
+        [ ] Optionally: one can additionally create a start btn
+    [X] Remove the instructions from the game screen.
+
+    [O] then create a screen for the state STATE_PAUSED
+    [O] and a screen for the state GAME OVER
+
+    [ ] in the future, separate fixed app settings (remaining on settings.py)
+        from user defined configuration (moved to a new file config.toml)
 
 ### <a name='DynamicFunctions'></a>Dynamic Functions
 
     [ ] Allow the ship to leave one side of the window and appear on the opposite side.
     [ ] Detect collisions with the window limit and trigger a game-over state.
+        [ ] create some obstacles, so that the ship can navigate around .. or colide.
     [ ] Let the player choose between wrap-around and collision mode before the game starts.
 
-    [ ] Implement holding the Space key for continuous acceleration.
-    [ ] Implement holding the B key for continuous braking.
+    2026-08-25: both implements using the pygame.key.get_pressed()
+    [X] Implement holding the Space key for continuous acceleration.
+    [X] Implement holding the B key for continuous braking.
 
-    [ ] Change the behavior of the left and right arrows to rotate the ship by a defined number of degrees, allowing curved movement.
+    [ ] Change the behavior of the left and right arrows to rotate the ship by 
+        a defined number of degrees, allowing curved movement.
 
     [ ] Implement inertia:
         [ ] Use the Up arrow to accelerate.
@@ -298,6 +313,19 @@ git branch
 #   dev
 # * main
 ```
+
+### 4. checking git log in a nut shell
+
+```
+git log --oneline --graph --decorate --all
+```
+
+The options mean:
+
+* --oneline — one compact line per commit
+* --graph — shows branch structure using *, |, and /
+* --decorate — shows branch and tag names
+* --all — includes all local branches, not only the current branch
 
 ---
 

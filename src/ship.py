@@ -1,34 +1,32 @@
 import pygame
-
 from . import settings
 
 
 class Ship:
+    
     def __init__(self, x, y):
+        """define the inital position, direction and speed of the ship"""
         self.position = pygame.Vector2(x, y)
-
-        # The ship initially points to the right.
-        self.direction = settings.RIGHT.copy()
-
-        # Speed is always non-negative.
+        self.direction = settings.UP.copy()
         self.speed = settings.INITIAL_SPEED
+        self.is_dead = False
 
     def set_direction(self, direction):
         """Change direction immediately, without inertia."""
         if direction.length_squared() > 0:
             self.direction = direction.normalize()
 
-    def accelerate(self):
+    def accelerate(self, factor:int = 1):
         """Increase speed up to the configured maximum."""
         self.speed = min(
-            self.speed + settings.ACCELERATION,
+            self.speed + factor * settings.ACCELERATION,
             settings.MAX_SPEED,
         )
 
-    def brake(self):
+    def brake(self, factor:int = 1):
         """Reduce speed without allowing it to become negative."""
         self.speed = max(
-            self.speed - settings.BRAKE_AMOUNT,
+            self.speed - factor * settings.BRAKE_AMOUNT,
             0,
         )
 
