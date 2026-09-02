@@ -147,8 +147,9 @@ appropriate.
         [ ] Optionally: one can additionally create a start btn
     [X] Remove the instructions from the game screen.
 
-    [O] then create a screen for the state STATE_PAUSED
-    [X] and a screen for the state GAME OVER. (done: 2026-09-02, )
+    2026-09-02: done. to be released with v1
+    [X] then create a screen for the state STATE_PAUSED
+    [X] and a screen for the state GAME OVER.
 
     [ ] in the future, separate fixed app settings (remaining on settings.py)
         from user defined configuration (moved to a new file config.toml)

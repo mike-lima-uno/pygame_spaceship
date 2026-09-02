@@ -1,4 +1,5 @@
 import pygame
+from pathlib import Path
 
 # Window
 WINDOW_TITLE = "Pygame (rudimentary) Spaceship - Cisso Lima App (C)"
@@ -31,6 +32,14 @@ GAMEOVER_TITLE = "Game Over"
 GAMEOVER_MESSAGE = "Press ENTER to restart."
 
 # - - - ship - - -
+
+# DRAW_SHIP indicates whether to draw the ship (true) 
+# or triangle (false) on the screen.
+DRAW_SHIP = True
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+SHIP_IMAGE = BASE_DIR / "assets" / "spaceship32x32_up.png"
+
 
 # Ship
 SHIP_SIZE = 24

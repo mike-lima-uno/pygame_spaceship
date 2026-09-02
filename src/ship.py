@@ -3,11 +3,23 @@ from . import settings
 
 
 class Ship:
-    
+
     def __init__(self, x, y):
         """define the inital position, direction and speed of the ship"""
-        self.position = pygame.Vector2(x, y)
+        if settings.DRAW_SHIP:
+            self.image = pygame.image.load(settings.SHIP_IMAGE).convert_alpha()
+            self.image = pygame.transform.scale(
+                self.image,
+                (settings.SHIP_SIZE * 2, settings.SHIP_SIZE * 2),
+            )
+            self.position = self.image.get_rect(
+                center=(x, y)
+            )
+        else:
+            self.position = pygame.Vector2(x, y)
+
         self.direction = settings.UP.copy()
+        self.direction_last = self.direction.copy()
         self.speed = settings.INITIAL_SPEED
         self.is_dead = False
 
@@ -32,7 +44,10 @@ class Ship:
 
     def update(self):
         movement = self.direction * self.speed
-        self.position += movement
+        if not settings.DRAW_SHIP:
+            self.position += movement
+        else:
+            self.position.center += movement
 
         self.detect_wall_collision()
 
@@ -68,6 +83,10 @@ class Ship:
 
     def get_polygon(self):
         """Create a triangular polygon pointing in the current direction."""
+
+        if settings.DRAW_SHIP: 
+            return
+
         forward = self.direction
         perpendicular = pygame.Vector2(-forward.y, forward.x)
 
@@ -91,6 +110,19 @@ class Ship:
         return [nose, rear_left, rear_right]
 
     def draw(self, screen):
+        if settings.DRAW_SHIP: 
+            if self.direction != self.direction_last.copy():
+                cross = self.direction.cross(self.direction_last)
+                if cross == 0:
+                    self.image = pygame.transform.rotate(self.image, 180)
+                elif cross > 0:
+                    self.image = pygame.transform.rotate(self.image, 90)
+                elif cross < 0:
+                    self.image = pygame.transform.rotate(self.image, -90)
+            screen.blit(self.image, self.position)
+            self.direction_last = self.direction.copy()
+            return
+        
         polygon = self.get_polygon()
 
         pygame.draw.polygon(

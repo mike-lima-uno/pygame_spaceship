@@ -98,6 +98,7 @@ class Game:
         """supports handle_events when a key downs"""
 
         # - - - arrows - - - 
+        self.direction_last = self.ship.direction.copy()
         if key == pygame.K_UP:
             self.ship.set_direction(settings.UP)
 
