@@ -21,7 +21,7 @@ class Ship:
         self.direction = settings.UP.copy()
         self.direction_last = self.direction.copy()
         self.speed = settings.INITIAL_SPEED
-        self.is_dead = False
+        self.destroyed = False
 
     def set_direction(self, direction):
         """Change direction immediately, without inertia."""
@@ -79,7 +79,7 @@ class Ship:
             self.speed = 0
 
             # game over condition
-            self.is_dead = True
+            self.destroyed = True
 
     def get_polygon(self):
         """Create a triangular polygon pointing in the current direction."""

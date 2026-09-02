@@ -157,9 +157,12 @@ appropriate.
 ### <a name='DynamicFunctions'></a>Dynamic Functions
 
     [ ] Allow the ship to leave one side of the window and appear on the opposite side.
+    
     [ ] Detect collisions with the window limit and trigger a game-over state.
         [ ] create some obstacles, so that the ship can navigate around .. or colide.
-    [ ] Let the player choose between wrap-around and collision mode before the game starts.
+    
+    2026-09-03 REMOVED: SEE ABOVE: ONE OBSTACLE CAN BE THE WALL.
+    [/] Let the player choose between wrap-around and collision mode before the game starts.
 
     2026-08-25: both implements using the pygame.key.get_pressed()
     [X] Implement holding the Space key for continuous acceleration.
@@ -168,16 +171,18 @@ appropriate.
     [ ] Change the behavior of the left and right arrows to rotate the ship by 
         a defined number of degrees, allowing curved movement.
 
+    * * * ATTENTION * * * : Implement inertia ONLY with shooting.
+                            This changes completely the inputs.
     [ ] Implement inertia:
         [ ] Use the Up arrow to accelerate.
-        [ ] Use the Down arrow to brake or reduce velocity.
-        [ ] Preserve the Space and B keys for their current functions.
-
-    [ ] Improve the inertia system by allowing backward movement up to a defined speed limit.
+        [ ] Use the Down arrow reduce velocity. 
+        [ ] Improve the inertia system by allowing backward movement up to a defined speed limit.
 
 ### <a name='Design'></a>Design
 
-    [ ] Replace the triangle with a spaceship icon. See: https://www.flaticon.com/free-icons/spaceship
+    2026-09-03: done. release v1
+    [x] Replace the triangle with a spaceship icon. See: https://www.flaticon.com/free-icons/spaceship
+    
     [ ] Create a starry background using Pygame.
     [ ] Add the Sun and Moon to the background.
     [ ] Make the celestial bodies move slowly.
@@ -185,11 +190,15 @@ appropriate.
 
 ### <a name='Interaction'></a>Interaction
 
+    * * * ATTENTION * * * : Implement shooting ONLY with inertia.
+                            This changes completely the inputs.
     [ ] Add shooting functionality:
         [ ] Replace the current Space key function with normal firing.
-        [ ] Use the B key to throw bombs.
-
-    [ ] Add a timer for bombs and display an animation after a few seconds.
+        [ ] Use the B key to throw bombs. 
+            A Bomb explodes:
+            [ ] after x seconds, or [ ] when hit, or [ ] when B is pressed again.
+        [ ] Add a timer for bombs
+        [ ] display an animation when a bomb explode.
 
     [ ] Add asteroids that can hit the ship and be hit by shots or bombs:
         [ ] Add hit points for the ship.

@@ -142,7 +142,7 @@ class Game:
         if self.state == settings.STATE_PLAYING:
             self.ship.update()
 
-            if self.ship.is_dead:
+            if self.ship.destroyed:
                 self.state = settings.STATE_GAMEOVER
 
     def draw(self):
