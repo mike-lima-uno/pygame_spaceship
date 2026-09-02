@@ -11,14 +11,24 @@ FPS = 60
 
 # - - - screens - - -
 
-# menu
-MENU_TITLE = "Spaceship from Cisso Lima App (C)"
-BTN_START_SIZE = (300,80)
-
 # Colors
 BACKGROUND_COLOR = (15, 20, 35)
 TEXT_COLOR = (235, 235, 235)
 WALL_COLOR = (80, 90, 120)
+GAMEOVER_COLOR = (255, 255, 0)
+PAUSE_COLOR = (255, 255, 0)
+
+# menu
+MENU_TITLE = "Spaceship"
+BTN_START_SIZE = (300,80)
+
+# paused
+PAUSED_TITLE = "Paused"
+PAUSED_MESSAGE = "Press P to continue."
+
+# game over
+GAMEOVER_TITLE = "Game Over"
+GAMEOVER_MESSAGE = "Press ENTER to restart."
 
 # - - - ship - - -
 

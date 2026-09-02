@@ -10,13 +10,13 @@ class Game:
     def __init__(self):
         pygame.init()
 
-        # self.screen = pygame.display.set_mode(
-        #     (settings.WIDTH, settings.HEIGHT),
-        #     pygame.FULLSCREEN
-        # )
         self.screen = pygame.display.set_mode(
             (settings.WIDTH, settings.HEIGHT),
+            pygame.FULLSCREEN
         )
+        # self.screen = pygame.display.set_mode(
+        #     (settings.WIDTH, settings.HEIGHT),
+        # )
 
         pygame.display.set_caption(settings.WINDOW_TITLE)
 
@@ -64,12 +64,29 @@ class Game:
             ):
                 self.start_game()
 
+            # event handler for pause
+            elif self.state == settings.STATE_PAUSED and (
+                event.type == pygame.KEYDOWN
+                and event.key == pygame.K_p
+            ):
+                self.state = settings.STATE_PLAYING
+
+            # game over state
+            elif self.state == settings.STATE_GAMEOVER and (
+                event.type == pygame.KEYDOWN
+                and event.key in (pygame.K_KP_ENTER, pygame.K_RETURN)
+            ):
+                self.state = settings.STATE_MENU
+
             # event handler for playing
             elif (
                 self.state == settings.STATE_PLAYING 
                 and event.type == pygame.KEYDOWN
             ):
-                self.handle_playing_keydown(event.key)
+                if event.key == pygame.K_p:
+                    self.state = settings.STATE_PAUSED
+                else:
+                    self.handle_playing_keydown(event.key)
 
         # event handler for playing when holding keys down
         if self.state == settings.STATE_PLAYING:
@@ -163,12 +180,12 @@ class Game:
         # Instructions under the button
         instructions = [
             "Arrow keys: Change direction",
-            "Space: Accelerate",
-            "B: Brake",
+            "Space: Accelerate / B: Brake",
             "P: Pause",
             "ESC: Quit",
         ]
 
+        
         len_instr = len(instructions)
         first_instruction_y = self.screen.get_height() \
             - len_instr * 35 \
@@ -216,11 +233,45 @@ class Game:
 
     def draw_pause(self):
         """supports draw: draw the paused screen."""
-        pass
+        self.screen.fill(settings.BACKGROUND_COLOR)
+
+        self.draw_centered_text(
+            settings.PAUSED_TITLE,
+            self.title_font,
+            settings.PAUSE_COLOR,
+            settings.HEIGHT // 2,
+        )
+
+        self.draw_centered_text(
+            settings.PAUSED_MESSAGE,
+            self.small_font,
+            settings.TEXT_COLOR,
+            settings.HEIGHT // 2 + self.title_font.get_height(),
+        )
+
+        pygame.display.flip()
 
     def draw_gameover(self):
         """supports draw: draw the game over screen."""
-        pass
+        
+        self.screen.fill(settings.BACKGROUND_COLOR)
+
+        # game title    
+        self.draw_centered_text(
+            settings.GAMEOVER_TITLE,
+            self.title_font,
+            settings.GAMEOVER_COLOR,
+            settings.HEIGHT // 2,
+        )
+
+        self.draw_centered_text(
+            settings.GAMEOVER_MESSAGE,
+            self.small_font,
+            settings.TEXT_COLOR,
+            settings.HEIGHT // 2 + self.title_font.get_height(),
+        )
+
+        pygame.display.flip()
 
     def run(self):
         """while self.running: play, else: quit.

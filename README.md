@@ -148,7 +148,7 @@ appropriate.
     [X] Remove the instructions from the game screen.
 
     [O] then create a screen for the state STATE_PAUSED
-    [O] and a screen for the state GAME OVER
+    [X] and a screen for the state GAME OVER. (done: 2026-09-02, )
 
     [ ] in the future, separate fixed app settings (remaining on settings.py)
         from user defined configuration (moved to a new file config.toml)

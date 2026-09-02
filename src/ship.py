@@ -34,9 +34,9 @@ class Ship:
         movement = self.direction * self.speed
         self.position += movement
 
-        self.keep_inside_window()
+        self.detect_wall_collision()
 
-    def keep_inside_window(self):
+    def detect_wall_collision(self):
         """Prevent the ship from crossing the window boundaries."""
         minimum_x = settings.SHIP_SIZE + settings.SHIP_MARGIN
         maximum_x = settings.WIDTH - settings.SHIP_SIZE - settings.SHIP_MARGIN
@@ -62,6 +62,9 @@ class Ship:
         # Stop at the wall instead of passing through it.
         if hit_wall:
             self.speed = 0
+
+            # game over condition
+            self.is_dead = True
 
     def get_polygon(self):
         """Create a triangular polygon pointing in the current direction."""
